@@ -9,7 +9,10 @@ interface IProps {
 
 const Document: FC<IProps> = ({ children }) => {
   const helmet = Helmet.renderStatic();
-  const state = dehydrate(queryClient, { shouldDehydrateQuery: () => true });
+  const state = dehydrate(queryClient, {
+    shouldDehydrateQuery: () => true,
+    dehydrateQueries: true,
+  });
 
   return (
     <html {...helmet.htmlAttributes.toString()}>
@@ -30,7 +33,7 @@ const Document: FC<IProps> = ({ children }) => {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-            const initState = ${JSON.stringify(state)}
+            var initState = ${JSON.stringify(state)};
         `,
           }}
         />

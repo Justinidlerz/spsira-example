@@ -5,7 +5,7 @@ import App from './app';
 const Main: FC = () => {
   return (
     <BrowserRouter>
-      <App />
+      <App state={(window as any).initState} />
     </BrowserRouter>
   );
 };
