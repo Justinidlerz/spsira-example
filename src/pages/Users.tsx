@@ -4,19 +4,13 @@ import { Helmet } from 'react-helmet';
 import fetch from 'cross-fetch';
 
 const useFetchUsers = () => {
-  return useQuery(
-    'getUsers',
-    async () => {
-      const data = await fetch('http://localhost:3000/api/users');
-      if (data.ok) {
-        return data.json();
-      }
-      throw new Error('Request failed');
-    },
-    {
-      refetchOnMount: false,
-    },
-  );
+  return useQuery('getUsers', async () => {
+    const data = await fetch('http://localhost:3000/api/users');
+    if (data.ok) {
+      return data.json();
+    }
+    throw new Error('Request failed');
+  });
 };
 
 const Users = () => {
