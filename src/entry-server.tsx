@@ -5,7 +5,10 @@ import Main from './main-server';
 import { queryClient } from './queryClient';
 
 export const render = async (url: string) => {
+  queryClient.clear();
   const app = <Main location={url} />;
+  renderToString(app);
+
   await queryClient.refetchQueries();
 
   const appHtml = renderToString(app);
